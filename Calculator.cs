@@ -1,11 +1,33 @@
-﻿
-using System.Runtime.InteropServices.Marshalling;
+class Calculator {
+(int, int) valores() {
+Console.Write("Type the first number: ");
+string primeiroNumero = Console.ReadLine()!;
 
-void menulogo() {
-    Console.WriteLine("Welcome to calculator");
+Console.Write("Type the second number: ");
+string segundoNumero = Console.ReadLine()!;
+
+int primeiroNumeroint = int.Parse(primeiroNumero);
+int segundoNumeroint = int.Parse(segundoNumero);
+
+return (primeiroNumeroint, segundoNumeroint);
 }
 
-void menuOptions(){
+void anotherOperation(){
+    Console.Write("Do you want to do another operation? ");
+string resposta = Console.ReadLine()!;
+if (resposta == "yes"){
+    Console.Clear();
+    ShowMenu();
+} else if (resposta == "no"){
+    Console.Clear();
+    exit();
+} else {
+    Console.WriteLine("Invalid answer");
+}
+}
+
+void ShowMenu(){
+     Console.WriteLine("Welcome to calculator");
      Console.WriteLine("Type 1 for the addition operation");
      Console.WriteLine("Type 2 for the subtraction operation");
      Console.WriteLine("Type 3 for the multiplication operation");
@@ -39,113 +61,49 @@ void menuOptions(){
 }
 
 void addition() {
-Console.Write("Type the first number: ");
-string primeiroNumero = Console.ReadLine()!;
-
-Console.Write("Type the second number: ");
-string segundoNumero = Console.ReadLine()!;
-
-int primeiroNumeroint = int.Parse(primeiroNumero)!;
-int segundoNumeroint = int.Parse(segundoNumero)!;
+var (primeiroNumeroint, segundoNumeroint) = valores();
 int additionCount =  primeiroNumeroint + segundoNumeroint;
 Console.WriteLine($"The addition is: {additionCount}");
-Console.Write("Do you want to do another operation? ");
-string resposta = Console.ReadLine()!;
-if (resposta == "yes"){
-    Console.Clear();
-    menulogo();
-    menuOptions();
-} else if (resposta == "no") {
-    Console.Clear();
-    exit();
-} else {
-    Console.WriteLine("Invalid answer");
-}
+anotherOperation();
 }
 
 void subtraction() {
-Console.Write("Type the first number: ");
-string primeiroNumero = Console.ReadLine()!;
-
-Console.Write("Type the second number: ");
-string segundoNumero = Console.ReadLine()!;
-
-int primeiroNumeroint = int.Parse(primeiroNumero);
-int segundoNumeroint = int.Parse(segundoNumero);
+var (primeiroNumeroint,segundoNumeroint) = valores();
 int subtractionCount = primeiroNumeroint - segundoNumeroint;
 Console.WriteLine($"The subtraction is: {subtractionCount} ");
-Console.Write("Do you want to do another operation? ");
-string resposta = Console.ReadLine()!;
-if (resposta == "yes"){
-    Console.Clear();
-    menulogo();
-    menuOptions();
-} else if (resposta == "no"){
-    Console.Clear();
-    exit();
-} else {
-    Console.WriteLine("Invalid answer");
-}
+anotherOperation();
 }
 
 void multiplication() {
-Console.Write("Type the first number: ");
-string primeiroNumero = Console.ReadLine()!;
-
-Console.Write("Type the second number: ");
-string segundoNumero = Console.ReadLine()!;
-     
-int primeiroNumeroint = int.Parse(primeiroNumero);
-int segundoNumeroint = int.Parse(segundoNumero);
+var (primeiroNumeroint, segundoNumeroint) = valores();
 int multiplicationCount = primeiroNumeroint * segundoNumeroint;
 Console.WriteLine($"The multiplication is: {multiplicationCount}");
-Console.Write("Do you want to do another operation? ");
-string resposta = Console.ReadLine()!;
-if (resposta == "yes"){
-    Console.Clear();
-    menulogo();
-    menuOptions();
-} else if (resposta == "no") {
-    Console.Clear();
-    exit();
-} else {
-    Console.WriteLine("Invalid answer");
-}
+anotherOperation();
 }
 
 void division() {
-Console.Write("Type the first number: ");
-string primeiroNumero = Console.ReadLine()!;
-
-Console.Write("Type the second number: ");
-string segundoNumero = Console.ReadLine()!;
-int primeiroNumeroint = int.Parse(primeiroNumero);
-int segundoNumeroint = int. Parse(segundoNumero);
+var (primeiroNumeroint, segundoNumeroint) = valores();
 if (segundoNumeroint == 0){
     Console.WriteLine("You can't divide a number per 0");
 } else {
     int divisionCount = primeiroNumeroint / segundoNumeroint;
 Console.WriteLine($"The division is: {divisionCount}");
-Console.Write("Do you want to do another operation? ");
-string resposta = Console.ReadLine()!;
-if (resposta == "yes"){
-    Console.Clear();
-    menulogo();
-    menuOptions();
-} else if (resposta == "no"){
-    Console.Clear();
-    exit();
-} else {
-    Console.WriteLine("Invalid answer");
+anotherOperation();
 }
 }
-}
-
 void exit() {
     Console.WriteLine("Hope you liked our calculator, see you later :D");
 }
-menulogo();
-menuOptions();
+    public void Start(){
+        ShowMenu();
+}
+}
+class Program{
+    static void Main(){
+        Calculator calc = new Calculator();
+        calc.Start();
+    }
+}
 
 
 
